@@ -1,0 +1,1834 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Video Commands" href="video_commands.html" /><link rel="prev" title="Implementing your own processing pipeline" href="../how_to_guides/implementing_processing.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.01.02"/>
+        <title>DEXP Commands - dexp documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=fade93df149f7c5fedb3ff897f799dc7d283b420" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">dexp  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">dexp  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/contact_us.html">Contact us</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-to guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_guides/data_conversion.html">Converting to our file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_guides/visualization.html">Visualizing your data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_guides/processing_multi_view.html">Processing a multi-view dataset using DEXP CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_guides/implementing_processing.html">Implementing your own processing pipeline</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Commands</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Image processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_commands.html">Video rendering</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/processing.html">Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/volume_render.html">Volume Render</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div class="section" id="dexp-commands">
+<h1>DEXP Commands<a class="headerlink" href="#dexp-commands" title="Permalink to this headline"></a></h1>
+<div class="section" id="add">
+<h2>add<a class="headerlink" href="#add" title="Permalink to this headline"></a></h2>
+<p>Adds the channels selected from INPUT_PATHS to the given output dataset (created if not existing).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>add <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-add-o">
+<span id="cmdoption-add-output_path"></span><span id="cmdoption-add-output-path"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_path&gt;</span></span><a class="headerlink" href="#cmdoption-add-o" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-add-c">
+<span id="cmdoption-add-channels"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channels&gt;</span></span><a class="headerlink" href="#cmdoption-add-c" title="Permalink to this definition"></a></dt>
+<dd><p>List of channels, all channels when ommited.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-add-rc">
+<span id="cmdoption-add-rename"></span><span class="sig-name descname"><span class="pre">-rc</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--rename</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;rename&gt;</span></span><a class="headerlink" href="#cmdoption-add-rc" title="Permalink to this definition"></a></dt>
+<dd><p>You can rename channels: e.g. if channels are ‘channel1,anotherc’ then ‘gfp,rfp’ would rename the ‘channel1’ channel to ‘gfp’, and ‘anotherc’ to ‘rfp’</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-add-st">
+<span id="cmdoption-add-store"></span><span class="sig-name descname"><span class="pre">-st</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--store</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;store&gt;</span></span><a class="headerlink" href="#cmdoption-add-st" title="Permalink to this definition"></a></dt>
+<dd><p>Zarr store: ‘dir’, ‘ndir’, or ‘zip’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>dir</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-add-w">
+<span id="cmdoption-add-overwrite"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-add-w" title="Permalink to this definition"></a></dt>
+<dd><p>Forces overwrite of target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-add-p">
+<span id="cmdoption-add-projection"></span><span id="cmdoption-add-np"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--projection</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">-np</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-add-p" title="Permalink to this definition"></a></dt>
+<dd><p>If flags should be copied.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-add-arg-INPUT_PATHS">
+<span id="cmdoption-add-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-add-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="check">
+<h2>check<a class="headerlink" href="#check" title="Permalink to this headline"></a></h2>
+<p>Checks the integrity of a dataset.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>check <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-check-c">
+<span id="cmdoption-check-channels"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channels&gt;</span></span><a class="headerlink" href="#cmdoption-check-c" title="Permalink to this definition"></a></dt>
+<dd><p>List of channels, all channels when ommited.</p>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-check-arg-INPUT_PATHS">
+<span id="cmdoption-check-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-check-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="copy">
+<h2>copy<a class="headerlink" href="#copy" title="Permalink to this headline"></a></h2>
+<p>Copies a dataset, channels can be selected, cropping can be performed, compression can be changed, …</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>copy <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-o">
+<span id="cmdoption-copy-output_path"></span><span id="cmdoption-copy-output-path"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_path&gt;</span></span><a class="headerlink" href="#cmdoption-copy-o" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-c">
+<span id="cmdoption-copy-channels"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channels&gt;</span></span><a class="headerlink" href="#cmdoption-copy-c" title="Permalink to this definition"></a></dt>
+<dd><p>List of channels, all channels when ommited.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-s">
+<span id="cmdoption-copy-slicing"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--slicing</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slicing&gt;</span></span><a class="headerlink" href="#cmdoption-copy-s" title="Permalink to this definition"></a></dt>
+<dd><p>Dataset slice (TZYX), e.g. [0:5] (first five stacks) [:,0:100] (cropping in z)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-st">
+<span id="cmdoption-copy-store"></span><span class="sig-name descname"><span class="pre">-st</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--store</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;store&gt;</span></span><a class="headerlink" href="#cmdoption-copy-st" title="Permalink to this definition"></a></dt>
+<dd><p>Zarr store: ‘dir’, ‘ndir’, or ‘zip’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>dir</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-chk">
+<span id="cmdoption-copy-chunks"></span><span class="sig-name descname"><span class="pre">-chk</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--chunks</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;chunks&gt;</span></span><a class="headerlink" href="#cmdoption-copy-chk" title="Permalink to this definition"></a></dt>
+<dd><p>Dataset chunks dimensions, e.g. (1, 126, 512, 512).</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-z">
+<span id="cmdoption-copy-codec"></span><span class="sig-name descname"><span class="pre">-z</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--codec</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;codec&gt;</span></span><a class="headerlink" href="#cmdoption-copy-z" title="Permalink to this definition"></a></dt>
+<dd><p>Compression codec: zstd for ’, ‘blosclz’, ‘lz4’, ‘lz4hc’, ‘zlib’ or ‘snappy’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>zstd</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-l">
+<span id="cmdoption-copy-clevel"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--clevel</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;clevel&gt;</span></span><a class="headerlink" href="#cmdoption-copy-l" title="Permalink to this definition"></a></dt>
+<dd><p>Compression level</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>3</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-w">
+<span id="cmdoption-copy-overwrite"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-copy-w" title="Permalink to this definition"></a></dt>
+<dd><p>Forces overwrite of target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-zl">
+<span id="cmdoption-copy-zerolevel"></span><span class="sig-name descname"><span class="pre">-zl</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--zerolevel</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;zerolevel&gt;</span></span><a class="headerlink" href="#cmdoption-copy-zl" title="Permalink to this definition"></a></dt>
+<dd><p>‘zero-level’ i.e. the pixel values in the restoration (to be substracted)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-wk">
+<span id="cmdoption-copy-workers"></span><span class="sig-name descname"><span class="pre">-wk</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workers&gt;</span></span><a class="headerlink" href="#cmdoption-copy-wk" title="Permalink to this definition"></a></dt>
+<dd><p>Number of worker threads to spawn. Negative numbers n correspond to: number_of _cores / <a href="#id1"><span class="problematic" id="id2">|n|</span></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>-4</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-wkb">
+<span id="cmdoption-copy-workersbackend"></span><span class="sig-name descname"><span class="pre">-wkb</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workersbackend</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workersbackend&gt;</span></span><a class="headerlink" href="#cmdoption-copy-wkb" title="Permalink to this definition"></a></dt>
+<dd><p>What backend to spawn workers with, can be ‘loky’ (multi-process) or ‘threading’ (multi-thread)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>threading</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-ck">
+<span id="cmdoption-copy-check"></span><span class="sig-name descname"><span class="pre">-ck</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--check</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;check&gt;</span></span><a class="headerlink" href="#cmdoption-copy-ck" title="Permalink to this definition"></a></dt>
+<dd><p>Checking integrity of written file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-copy-arg-INPUT_PATHS">
+<span id="cmdoption-copy-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-copy-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="deskew">
+<h2>deskew<a class="headerlink" href="#deskew" title="Permalink to this headline"></a></h2>
+<p>Deskews all or selected channels of a dataset.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>deskew <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-o">
+<span id="cmdoption-deskew-output_path"></span><span id="cmdoption-deskew-output-path"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_path&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-o" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-c">
+<span id="cmdoption-deskew-channels"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channels&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-c" title="Permalink to this definition"></a></dt>
+<dd><p>list of channels for the view in standard order for the microscope type (C0L0, C0L1, C1L0, C1L1,…)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-s">
+<span id="cmdoption-deskew-slicing"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--slicing</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slicing&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-s" title="Permalink to this definition"></a></dt>
+<dd><p>dataset slice (TZYX), e.g. [0:5] (first five stacks) [:,0:100] (cropping in z)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-st">
+<span id="cmdoption-deskew-store"></span><span class="sig-name descname"><span class="pre">-st</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--store</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;store&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-st" title="Permalink to this definition"></a></dt>
+<dd><p>Zarr store: ‘dir’, ‘ndir’, or ‘zip’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>dir</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-z">
+<span id="cmdoption-deskew-codec"></span><span class="sig-name descname"><span class="pre">-z</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--codec</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;codec&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-z" title="Permalink to this definition"></a></dt>
+<dd><p>compression codec: ‘zstd’, ‘blosclz’, ‘lz4’, ‘lz4hc’, ‘zlib’ or ‘snappy’</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-l">
+<span id="cmdoption-deskew-clevel"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--clevel</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;clevel&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-l" title="Permalink to this definition"></a></dt>
+<dd><p>Compression level</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>3</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-w">
+<span id="cmdoption-deskew-overwrite"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-deskew-w" title="Permalink to this definition"></a></dt>
+<dd><p>to force overwrite of target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-m">
+<span id="cmdoption-deskew-mode"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--mode</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;mode&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-m" title="Permalink to this definition"></a></dt>
+<dd><p>Deskew algorithm: ‘yang’ or ‘classic’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>yang</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-xx">
+<span id="cmdoption-deskew-deltax"></span><span class="sig-name descname"><span class="pre">-xx</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--deltax</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;deltax&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-xx" title="Permalink to this definition"></a></dt>
+<dd><p>Pixel size of the camera</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-zz">
+<span id="cmdoption-deskew-deltaz"></span><span class="sig-name descname"><span class="pre">-zz</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--deltaz</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;deltaz&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-zz" title="Permalink to this definition"></a></dt>
+<dd><p>Scanning step (stage or galvo scanning step, not the same as the distance between the slices)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-a">
+<span id="cmdoption-deskew-angle"></span><span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--angle</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;angle&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-a" title="Permalink to this definition"></a></dt>
+<dd><p>Incident angle of the light sheet, angle between the light sheet and the optical axis in degrees</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-fl">
+<span id="cmdoption-deskew-flips"></span><span class="sig-name descname"><span class="pre">-fl</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--flips</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;flips&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-fl" title="Permalink to this definition"></a></dt>
+<dd><p>Flips image to deskew in the opposite orientation (True for view 0 and False for view 1)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-co">
+<span id="cmdoption-deskew-camorientation"></span><span class="sig-name descname"><span class="pre">-co</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--camorientation</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;camorientation&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-co" title="Permalink to this definition"></a></dt>
+<dd><p>Camera orientation correction expressed as a number of 90 deg rotations to be performed per 2D image in stack – if required.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-za">
+<span id="cmdoption-deskew-depthaxis"></span><span class="sig-name descname"><span class="pre">-za</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--depthaxis</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;depthaxis&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-za" title="Permalink to this definition"></a></dt>
+<dd><p>Depth axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-xa">
+<span id="cmdoption-deskew-lateralaxis"></span><span class="sig-name descname"><span class="pre">-xa</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--lateralaxis</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;lateralaxis&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-xa" title="Permalink to this definition"></a></dt>
+<dd><p>Lateral axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-k">
+<span id="cmdoption-deskew-workers"></span><span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workers&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-k" title="Permalink to this definition"></a></dt>
+<dd><p>Number of worker threads to spawn, if -1 then num workers = num devices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>-1</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-wkb">
+<span id="cmdoption-deskew-workersbackend"></span><span class="sig-name descname"><span class="pre">-wkb</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workersbackend</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workersbackend&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-wkb" title="Permalink to this definition"></a></dt>
+<dd><p>What backend to spawn workers with, can be ‘loky’ (multi-process) or ‘threading’ (multi-thread)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>threading</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-d">
+<span id="cmdoption-deskew-devices"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--devices</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;devices&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-d" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the CUDA devices id, e.g. 0,1,2 or ‘all’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-ck">
+<span id="cmdoption-deskew-check"></span><span class="sig-name descname"><span class="pre">-ck</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--check</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;check&gt;</span></span><a class="headerlink" href="#cmdoption-deskew-ck" title="Permalink to this definition"></a></dt>
+<dd><p>Checking integrity of written file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-deskew-arg-INPUT_PATHS">
+<span id="cmdoption-deskew-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-deskew-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="fuse">
+<h2>fuse<a class="headerlink" href="#fuse" title="Permalink to this headline"></a></h2>
+<p>Fuses the views of a multi-view light-sheet microscope dataset (available: simview and mvsols)</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>fuse <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-o">
+<span id="cmdoption-fuse-output_path"></span><span id="cmdoption-fuse-output-path"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_path&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-o" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-c">
+<span id="cmdoption-fuse-channels"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channels&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-c" title="Permalink to this definition"></a></dt>
+<dd><p>list of channels for the view in standard order for the microscope type (C0L0, C0L1, C1L0, C1L1,…)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-s">
+<span id="cmdoption-fuse-slicing"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--slicing</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slicing&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-s" title="Permalink to this definition"></a></dt>
+<dd><p>dataset slice (TZYX), e.g. [0:5] (first five stacks) [:,0:100] (cropping in z)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-st">
+<span id="cmdoption-fuse-store"></span><span class="sig-name descname"><span class="pre">-st</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--store</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;store&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-st" title="Permalink to this definition"></a></dt>
+<dd><p>Zarr store: ‘dir’, ‘ndir’, or ‘zip’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>dir</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-z">
+<span id="cmdoption-fuse-codec"></span><span class="sig-name descname"><span class="pre">-z</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--codec</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;codec&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-z" title="Permalink to this definition"></a></dt>
+<dd><p>compression codec: ‘zstd’, ‘blosclz’, ‘lz4’, ‘lz4hc’, ‘zlib’ or ‘snappy’</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-l">
+<span id="cmdoption-fuse-clevel"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--clevel</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;clevel&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-l" title="Permalink to this definition"></a></dt>
+<dd><p>Compression level</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>3</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-w">
+<span id="cmdoption-fuse-overwrite"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-fuse-w" title="Permalink to this definition"></a></dt>
+<dd><p>to force overwrite of target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-m">
+<span id="cmdoption-fuse-microscope"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--microscope</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;microscope&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-m" title="Permalink to this definition"></a></dt>
+<dd><p>Microscope objective to use for computing psf, can be: simview or mvsols</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>simview</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-eq">
+<span id="cmdoption-fuse-equalise"></span><span id="cmdoption-fuse-neq"></span><span id="cmdoption-fuse-no-equalise"></span><span class="sig-name descname"><span class="pre">-eq</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--equalise</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">-neq</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-equalise</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-fuse-eq" title="Permalink to this definition"></a></dt>
+<dd><p>Equalise intensity of views before fusion, or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-eqm">
+<span id="cmdoption-fuse-equalisemode"></span><span class="sig-name descname"><span class="pre">-eqm</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--equalisemode</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;equalisemode&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-eqm" title="Permalink to this definition"></a></dt>
+<dd><p>Equalisation modes: compute correction ratios only for first time point: ‘first’ or for all time points: ‘all’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>first</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-zl">
+<span id="cmdoption-fuse-zerolevel"></span><span class="sig-name descname"><span class="pre">-zl</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--zerolevel</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;zerolevel&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-zl" title="Permalink to this definition"></a></dt>
+<dd><p>‘zero-level’ i.e. the pixel values in the restoration (to be substracted)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-ch">
+<span id="cmdoption-fuse-cliphigh"></span><span class="sig-name descname"><span class="pre">-ch</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--cliphigh</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;cliphigh&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-ch" title="Permalink to this definition"></a></dt>
+<dd><p>Clips voxel values above the given value, if zero no clipping is done</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-f">
+<span id="cmdoption-fuse-fusion"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--fusion</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;fusion&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-f" title="Permalink to this definition"></a></dt>
+<dd><p>Fusion mode, can be: ‘tg’ or ‘dct’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>tg</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-fbs">
+<span id="cmdoption-fuse-fusion_bias_strength"></span><span id="cmdoption-fuse-fusion-bias-strength"></span><span class="sig-name descname"><span class="pre">-fbs</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--fusion_bias_strength</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;fusion_bias_strength&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-fbs" title="Permalink to this definition"></a></dt>
+<dd><p>Fusion bias strength for illumination and detection ‘fbs_i fbs_d’, set to ‘0 0’) if fusing a cropped region</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.5, 0.02</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-dhs">
+<span id="cmdoption-fuse-dehaze_size"></span><span id="cmdoption-fuse-dehaze-size"></span><span class="sig-name descname"><span class="pre">-dhs</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dehaze_size</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dehaze_size&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-dhs" title="Permalink to this definition"></a></dt>
+<dd><p>Filter size (scale) for dehazing the final regsitered and fused image to reduce effect of scattered and out-of-focus light. Set to zero to deactivate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>65</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-ddt">
+<span id="cmdoption-fuse-dark-denoise-threshold"></span><span class="sig-name descname"><span class="pre">-ddt</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dark-denoise-threshold</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dark_denoise_threshold&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-ddt" title="Permalink to this definition"></a></dt>
+<dd><p>Threshold for denoises the dark pixels of the image – helps increase compression ratio. Set to zero to deactivate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-zpa">
+<span id="cmdoption-fuse-zpadapodise"></span><span class="sig-name descname"><span class="pre">-zpa</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--zpadapodise</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;zpadapodise&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-zpa" title="Permalink to this definition"></a></dt>
+<dd><p>Pads and apodises the views along z before fusion: ‘pad apo’, where pad is a padding length, and apo is apodisation length, both in voxels. If pad=apo, no original voxel is modified and only added voxels are apodised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>8, 96</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-lr">
+<span id="cmdoption-fuse-loadreg"></span><span class="sig-name descname"><span class="pre">-lr</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--loadreg</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-fuse-lr" title="Permalink to this definition"></a></dt>
+<dd><p>Turn on to load the registration parameters from a previous run</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-mf">
+<span id="cmdoption-fuse-model-filename"></span><span class="sig-name descname"><span class="pre">-mf</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--model-filename</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;model_filename&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-mf" title="Permalink to this definition"></a></dt>
+<dd><p>Model filename to load or save registration model list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>registration_models.txt</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-wri">
+<span id="cmdoption-fuse-warpregiter"></span><span class="sig-name descname"><span class="pre">-wri</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--warpregiter</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;warpregiter&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-wri" title="Permalink to this definition"></a></dt>
+<dd><p>Number of iterations for warp registration (if applicable).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>4</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-mc">
+<span id="cmdoption-fuse-minconfidence"></span><span class="sig-name descname"><span class="pre">-mc</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--minconfidence</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;minconfidence&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-mc" title="Permalink to this definition"></a></dt>
+<dd><p>Minimal confidence for registration parameters, if below that level the registration parameters for previous time points is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.3</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-md">
+<span id="cmdoption-fuse-maxchange"></span><span class="sig-name descname"><span class="pre">-md</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--maxchange</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;maxchange&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-md" title="Permalink to this definition"></a></dt>
+<dd><p>Maximal change in registration parameters, if above that level the registration parameters for previous time points is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>16</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-ref">
+<span id="cmdoption-fuse-regedgefilter"></span><span class="sig-name descname"><span class="pre">-ref</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--regedgefilter</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-fuse-ref" title="Permalink to this definition"></a></dt>
+<dd><p>Use this flag to apply an edge filter to help registration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-mp">
+<span id="cmdoption-fuse-maxproj"></span><span id="cmdoption-fuse-nmp"></span><span id="cmdoption-fuse-no-maxproj"></span><span class="sig-name descname"><span class="pre">-mp</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--maxproj</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">-nmp</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-maxproj</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-fuse-mp" title="Permalink to this definition"></a></dt>
+<dd><p>Registers using only the maximum intensity projection from each stack.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-hd">
+<span id="cmdoption-fuse-hugedataset"></span><span class="sig-name descname"><span class="pre">-hd</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--hugedataset</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-fuse-hd" title="Permalink to this definition"></a></dt>
+<dd><p>Use this flag to indicate that the the dataset is _huge_ and that memory allocation should be optimised at the detriment of processing speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-d">
+<span id="cmdoption-fuse-devices"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--devices</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;devices&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-d" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the CUDA devices id, e.g. 0,1,2 or ‘all’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-p">
+<span id="cmdoption-fuse-pad"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--pad</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-fuse-p" title="Permalink to this definition"></a></dt>
+<dd><p>Use this flag to pad views according to the registration models.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-wth">
+<span id="cmdoption-fuse-white-top-hat-size"></span><span class="sig-name descname"><span class="pre">-wth</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--white-top-hat-size</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;white_top_hat_size&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-wth" title="Permalink to this definition"></a></dt>
+<dd><p>Area opening value after down sampling for white top hat transform transform. Larger values will keep larger components. Recommended value of 1e5.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-wths">
+<span id="cmdoption-fuse-white-top-hat-sampling"></span><span class="sig-name descname"><span class="pre">-wths</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--white-top-hat-sampling</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;white_top_hat_sampling&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-wths" title="Permalink to this definition"></a></dt>
+<dd><p>Down sampling size to compute the area opening</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-ck">
+<span id="cmdoption-fuse-check"></span><span class="sig-name descname"><span class="pre">-ck</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--check</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;check&gt;</span></span><a class="headerlink" href="#cmdoption-fuse-ck" title="Permalink to this definition"></a></dt>
+<dd><p>Checking integrity of written file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-fuse-arg-INPUT_PATHS">
+<span id="cmdoption-fuse-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-fuse-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="info">
+<h2>info<a class="headerlink" href="#info" title="Permalink to this headline"></a></h2>
+<p>Prints out extensive information about dataset.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>info <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-info-arg-INPUT_PATHS">
+<span id="cmdoption-info-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-info-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="isonet">
+<h2>isonet<a class="headerlink" href="#isonet" title="Permalink to this headline"></a></h2>
+<p>Recovers isotropic resolution using the ISONET approach (Weigert et al.)</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>isonet <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-o">
+<span id="cmdoption-isonet-output_path"></span><span id="cmdoption-isonet-output-path"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_path&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-o" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-dxy">
+<span id="cmdoption-isonet-dxy"></span><span class="sig-name descname"><span class="pre">-dxy</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dxy</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dxy&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-dxy" title="Permalink to this definition"></a></dt>
+<dd><p><strong>Required</strong></p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-dz">
+<span id="cmdoption-isonet-dz"></span><span class="sig-name descname"><span class="pre">-dz</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dz</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dz&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-dz" title="Permalink to this definition"></a></dt>
+<dd><p><strong>Required</strong></p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-b">
+<span id="cmdoption-isonet-binning"></span><span class="sig-name descname"><span class="pre">-b</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--binning</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;binning&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-b" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-sh">
+<span id="cmdoption-isonet-sharpening"></span><span class="sig-name descname"><span class="pre">-sh</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--sharpening</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-isonet-sh" title="Permalink to this definition"></a></dt>
+<dd><p>Dehazes the image with a low-pass rejection filter.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-ch">
+<span id="cmdoption-isonet-channel"></span><span class="sig-name descname"><span class="pre">-ch</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channel</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channel&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-ch" title="Permalink to this definition"></a></dt>
+<dd><p>dataset channel name</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-s">
+<span id="cmdoption-isonet-slicing"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--slicing</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slicing&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-s" title="Permalink to this definition"></a></dt>
+<dd><p>dataset slice (TZYX), e.g. [0:5] (first five stacks) [:,0:100] (cropping in z)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-st">
+<span id="cmdoption-isonet-store"></span><span class="sig-name descname"><span class="pre">-st</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--store</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;store&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-st" title="Permalink to this definition"></a></dt>
+<dd><p>Zarr store: ‘dir’, ‘ndir’, or ‘zip’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>dir</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-z">
+<span id="cmdoption-isonet-codec"></span><span class="sig-name descname"><span class="pre">-z</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--codec</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;codec&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-z" title="Permalink to this definition"></a></dt>
+<dd><p>compression codec: ‘zstd’, ‘blosclz’, ‘lz4’, ‘lz4hc’, ‘zlib’ or ‘snappy’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>zstd</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-l">
+<span id="cmdoption-isonet-clevel"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--clevel</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;clevel&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-l" title="Permalink to this definition"></a></dt>
+<dd><p>Compression level</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>3</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-w">
+<span id="cmdoption-isonet-overwrite"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-isonet-w" title="Permalink to this definition"></a></dt>
+<dd><p>to force overwrite of target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-c">
+<span id="cmdoption-isonet-context"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--context</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;context&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-c" title="Permalink to this definition"></a></dt>
+<dd><p>IsoNet context name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>default</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-m">
+<span id="cmdoption-isonet-mode"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--mode</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;mode&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-m" title="Permalink to this definition"></a></dt>
+<dd><p>mode: ‘pta’ -&gt; prepare, train and apply, ‘a’ just apply</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>pta</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-e">
+<span id="cmdoption-isonet-max_epochs"></span><span id="cmdoption-isonet-max-epochs"></span><span class="sig-name descname"><span class="pre">-e</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--max_epochs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;max_epochs&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-e" title="Permalink to this definition"></a></dt>
+<dd><p>to force overwrite of target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>50</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-ck">
+<span id="cmdoption-isonet-check"></span><span class="sig-name descname"><span class="pre">-ck</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--check</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;check&gt;</span></span><a class="headerlink" href="#cmdoption-isonet-ck" title="Permalink to this definition"></a></dt>
+<dd><p>Checking integrity of written file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-isonet-arg-INPUT_PATHS">
+<span id="cmdoption-isonet-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-isonet-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="projrender">
+<h2>projrender<a class="headerlink" href="#projrender" title="Permalink to this headline"></a></h2>
+<p>Renders datatset using 2D projections.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>projrender <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-o">
+<span id="cmdoption-projrender-output_path"></span><span id="cmdoption-projrender-output-path"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_path&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-o" title="Permalink to this definition"></a></dt>
+<dd><p>Output folder to store rendered PNGs. Default is: frames_&lt;channel_name&gt;</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-c">
+<span id="cmdoption-projrender-channels"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channels&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-c" title="Permalink to this definition"></a></dt>
+<dd><p>list of channels to color, all channels when ommited.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-s">
+<span id="cmdoption-projrender-slicing"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--slicing</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slicing&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-s" title="Permalink to this definition"></a></dt>
+<dd><p>dataset slice (TZYX), e.g. [0:5] (first five stacks) [:,0:100] (cropping in z).</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-w">
+<span id="cmdoption-projrender-overwrite"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projrender-w" title="Permalink to this definition"></a></dt>
+<dd><p>to force overwrite of target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-ax">
+<span id="cmdoption-projrender-axis"></span><span class="sig-name descname"><span class="pre">-ax</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--axis</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axis&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-ax" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the projection axis: 0-&gt;Z, 1-&gt;Y, 2-&gt;X</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-di">
+<span id="cmdoption-projrender-dir"></span><span class="sig-name descname"><span class="pre">-di</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dir</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dir&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-di" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the projection direction: -1 -&gt; top to bottom, +1 -&gt; bottom to top.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>-1</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-m">
+<span id="cmdoption-projrender-mode"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--mode</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;mode&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-m" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the projection mode: ‘max’: classic max projection, ‘colormax’: color max projection, i.e. color codes for depth, ‘maxcolor’ same as colormax but first does depth-coding by color and then max projects (acheives some level of transparency).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>colormax</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-cl">
+<span id="cmdoption-projrender-clim"></span><span class="sig-name descname"><span class="pre">-cl</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--clim</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;clim&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-cl" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the contrast limits, i.e. -cl 0,1000 sets the contrast limits to [0,1000]</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-at">
+<span id="cmdoption-projrender-attenuation"></span><span class="sig-name descname"><span class="pre">-at</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--attenuation</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;attenuation&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-at" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the projection attenuation coefficient, should be within [0, 1] ideally close to 0. Larger values mean more attenuation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.1</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-g">
+<span id="cmdoption-projrender-gamma"></span><span class="sig-name descname"><span class="pre">-g</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--gamma</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;gamma&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-g" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the gamma coefficient pre-applied to the raw voxel values (before projection or any subsequent processing).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1.0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-dl">
+<span id="cmdoption-projrender-dlim"></span><span class="sig-name descname"><span class="pre">-dl</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dlim</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dlim&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-dl" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the depth limits. Depth limits. For example, a value of (0.1, 0.7) means that the colormap start at a normalised depth of 0.1, and ends at a normalised depth of 0.7, other values are clipped. Only used for colormax mode.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-cm">
+<span id="cmdoption-projrender-colormap"></span><span class="sig-name descname"><span class="pre">-cm</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--colormap</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;colormap&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-cm" title="Permalink to this definition"></a></dt>
+<dd><p>sets colormap, e.g. viridis, gray, magma, plasma, inferno. Use a rainbow colormap such as turbo, bmy, or rainbow (recommended) for color-coded depth modes.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-cg">
+<span id="cmdoption-projrender-rgbgamma"></span><span class="sig-name descname"><span class="pre">-cg</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--rgbgamma</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;rgbgamma&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-cg" title="Permalink to this definition"></a></dt>
+<dd><p>Gamma correction applied to the resulting RGB image. Usefull to brighten image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1.0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-t">
+<span id="cmdoption-projrender-transparency"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--transparency</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projrender-t" title="Permalink to this definition"></a></dt>
+<dd><p>Enables transparency output when possible. Good for rendering on white (e.g. on paper).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-lsi">
+<span id="cmdoption-projrender-legendsize"></span><span class="sig-name descname"><span class="pre">-lsi</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--legendsize</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;legendsize&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-lsi" title="Permalink to this definition"></a></dt>
+<dd><p>Multiplicative factor to control size of legend. If 0, no legend is generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1.0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-lsc">
+<span id="cmdoption-projrender-legendscale"></span><span class="sig-name descname"><span class="pre">-lsc</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--legendscale</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;legendscale&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-lsc" title="Permalink to this definition"></a></dt>
+<dd><p>Float that gives the scale in some unit of each voxel (along the projection direction). Only in color projection modes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1.0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-lt">
+<span id="cmdoption-projrender-legendtitle"></span><span class="sig-name descname"><span class="pre">-lt</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--legendtitle</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;legendtitle&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-lt" title="Permalink to this definition"></a></dt>
+<dd><p>Title for the color-coded depth legend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>color-coded depth (voxels)</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-ltc">
+<span id="cmdoption-projrender-legendtitlecolor"></span><span class="sig-name descname"><span class="pre">-ltc</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--legendtitlecolor</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;legendtitlecolor&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-ltc" title="Permalink to this definition"></a></dt>
+<dd><p>Legend title color as a tuple of normalised floats: R, G, B, A  (values between 0 and 1).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1,1,1,1</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-lp">
+<span id="cmdoption-projrender-legendposition"></span><span class="sig-name descname"><span class="pre">-lp</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--legendposition</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;legendposition&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-lp" title="Permalink to this definition"></a></dt>
+<dd><p>Position of the legend in pixels in natural order: x,y. Can also be a string: bottom_left, bottom_right, top_left, or top_right.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>bottom_left</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-la">
+<span id="cmdoption-projrender-legendalpha"></span><span class="sig-name descname"><span class="pre">-la</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--legendalpha</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;legendalpha&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-la" title="Permalink to this definition"></a></dt>
+<dd><p>Transparency for legend (1 means opaque, 0 means completely transparent)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-sp">
+<span id="cmdoption-projrender-step"></span><span class="sig-name descname"><span class="pre">-sp</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--step</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;step&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-sp" title="Permalink to this definition"></a></dt>
+<dd><p>Process every ‘step’ frames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-k">
+<span id="cmdoption-projrender-workers"></span><span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workers&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-k" title="Permalink to this definition"></a></dt>
+<dd><p>Number of worker threads to spawn, if -1 then num workers = num devices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>-1</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-wkb">
+<span id="cmdoption-projrender-workersbackend"></span><span class="sig-name descname"><span class="pre">-wkb</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workersbackend</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workersbackend&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-wkb" title="Permalink to this definition"></a></dt>
+<dd><p>What backend to spawn workers with, can be ‘loky’ (multi-process) or ‘threading’ (multi-thread)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>threading</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-d">
+<span id="cmdoption-projrender-devices"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--devices</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;devices&gt;</span></span><a class="headerlink" href="#cmdoption-projrender-d" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the CUDA devices id, e.g. 0,1,2 or ‘all’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projrender-arg-INPUT_PATHS">
+<span id="cmdoption-projrender-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projrender-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="serve">
+<h2>serve<a class="headerlink" href="#serve" title="Permalink to this headline"></a></h2>
+<p>Serves dataset across network.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>serve <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-serve-h">
+<span id="cmdoption-serve-host"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--host</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;host&gt;</span></span><a class="headerlink" href="#cmdoption-serve-h" title="Permalink to this definition"></a></dt>
+<dd><p>Host to serve from</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.0.0.0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-serve-p">
+<span id="cmdoption-serve-port"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--port</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;port&gt;</span></span><a class="headerlink" href="#cmdoption-serve-p" title="Permalink to this definition"></a></dt>
+<dd><p>Port to serve from</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>8000</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-serve-arg-INPUT_PATHS">
+<span id="cmdoption-serve-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-serve-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="speedtest">
+<h2>speedtest<a class="headerlink" href="#speedtest" title="Permalink to this headline"></a></h2>
+<p>Estimates storage medium speed.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>speedtest <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stabilize">
+<h2>stabilize<a class="headerlink" href="#stabilize" title="Permalink to this headline"></a></h2>
+<p>Stabilises dataset against translations across time.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>stabilize <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-o">
+<span id="cmdoption-stabilize-output_path"></span><span id="cmdoption-stabilize-output-path"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_path&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-o" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-c">
+<span id="cmdoption-stabilize-channels"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channels&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-c" title="Permalink to this definition"></a></dt>
+<dd><p>List of channels, all channels when omitted.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-rc">
+<span id="cmdoption-stabilize-reference-channel"></span><span class="sig-name descname"><span class="pre">-rc</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--reference-channel</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;reference_channel&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-rc" title="Permalink to this definition"></a></dt>
+<dd><p>Reference channel for single stabilization model computation.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-s">
+<span id="cmdoption-stabilize-slicing"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--slicing</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slicing&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-s" title="Permalink to this definition"></a></dt>
+<dd><p>Dataset slice (TZYX), e.g. [0:5] (first five stacks) [:,0:100] (cropping in z)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-st">
+<span id="cmdoption-stabilize-store"></span><span class="sig-name descname"><span class="pre">-st</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--store</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;store&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-st" title="Permalink to this definition"></a></dt>
+<dd><p>Zarr store: ‘dir’, ‘ndir’, or ‘zip’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>dir</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-z">
+<span id="cmdoption-stabilize-codec"></span><span class="sig-name descname"><span class="pre">-z</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--codec</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;codec&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-z" title="Permalink to this definition"></a></dt>
+<dd><p>Compression codec: ‘zstd’, ‘blosclz’, ‘lz4’, ‘lz4hc’, ‘zlib’ or ‘snappy’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>zstd</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-l">
+<span id="cmdoption-stabilize-clevel"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--clevel</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;clevel&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-l" title="Permalink to this definition"></a></dt>
+<dd><p>Compression level</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>3</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-w">
+<span id="cmdoption-stabilize-overwrite"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-stabilize-w" title="Permalink to this definition"></a></dt>
+<dd><p>Forces overwrite of target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-mr">
+<span id="cmdoption-stabilize-maxrange"></span><span class="sig-name descname"><span class="pre">-mr</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--maxrange</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;maxrange&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-mr" title="Permalink to this definition"></a></dt>
+<dd><p>Maximal distance, in time points, between pairs of images to registrate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>7</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-mc">
+<span id="cmdoption-stabilize-minconfidence"></span><span class="sig-name descname"><span class="pre">-mc</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--minconfidence</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;minconfidence&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-mc" title="Permalink to this definition"></a></dt>
+<dd><p>Minimal confidence for registration parameters, if below that level the registration parameters for previous time points is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.5</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-com">
+<span id="cmdoption-stabilize-no-com"></span><span class="sig-name descname"><span class="pre">--com</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-com</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-stabilize-com" title="Permalink to this definition"></a></dt>
+<dd><p>Enable center of mass fallback when standard registration fails.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-q">
+<span id="cmdoption-stabilize-quantile"></span><span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--quantile</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;quantile&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-q" title="Permalink to this definition"></a></dt>
+<dd><p>Quantile to cut-off background in center-of-mass calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.5</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-t">
+<span id="cmdoption-stabilize-tolerance"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--tolerance</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;tolerance&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-t" title="Permalink to this definition"></a></dt>
+<dd><p>Tolerance for linear solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1e-07</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-oe">
+<span id="cmdoption-stabilize-ordererror"></span><span class="sig-name descname"><span class="pre">-oe</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ordererror</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;ordererror&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-oe" title="Permalink to this definition"></a></dt>
+<dd><p>Order for linear solver error term.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>2.0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-or">
+<span id="cmdoption-stabilize-orderreg"></span><span class="sig-name descname"><span class="pre">-or</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--orderreg</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;orderreg&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-or" title="Permalink to this definition"></a></dt>
+<dd><p>Order for linear solver regularisation term.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1.0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-0">
+<span id="cmdoption-stabilize-alphareg"></span><span class="sig-name descname"><span class="pre">-or</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--alphareg</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;alphareg&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-0" title="Permalink to this definition"></a></dt>
+<dd><p>Multiplicative coefficient for regularisation term.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.0001</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-rs">
+<span id="cmdoption-stabilize-pcsigma"></span><span class="sig-name descname"><span class="pre">-rs</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--pcsigma</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;pcsigma&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-rs" title="Permalink to this definition"></a></dt>
+<dd><p>Sigma for Gaussian smoothing of phase correlogram, zero to disable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>2</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-ds">
+<span id="cmdoption-stabilize-dsigma"></span><span class="sig-name descname"><span class="pre">-ds</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dsigma</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dsigma&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-ds" title="Permalink to this definition"></a></dt>
+<dd><p>Sigma for Gaussian smoothing (crude denoising) of input images, zero to disable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1.5</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-lc">
+<span id="cmdoption-stabilize-logcomp"></span><span class="sig-name descname"><span class="pre">-lc</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--logcomp</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;logcomp&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-lc" title="Permalink to this definition"></a></dt>
+<dd><p>Applies the function log1p to the images to compress high-intensities (usefull when very (too) bright structures are present in the images, such as beads.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-ef">
+<span id="cmdoption-stabilize-edgefilter"></span><span class="sig-name descname"><span class="pre">-ef</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--edgefilter</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;edgefilter&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-ef" title="Permalink to this definition"></a></dt>
+<dd><p>Applies sobel edge filter to input images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-dt">
+<span id="cmdoption-stabilize-detrend"></span><span class="sig-name descname"><span class="pre">-dt</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--detrend</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-stabilize-dt" title="Permalink to this definition"></a></dt>
+<dd><p>Remove linear trend from stabilization result</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-mp">
+<span id="cmdoption-stabilize-maxproj"></span><span id="cmdoption-stabilize-nmp"></span><span id="cmdoption-stabilize-no-maxproj"></span><span class="sig-name descname"><span class="pre">-mp</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--maxproj</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">-nmp</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-maxproj</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-stabilize-mp" title="Permalink to this definition"></a></dt>
+<dd><p>Registers using only the maximum intensity projection from each stack.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-k">
+<span id="cmdoption-stabilize-workers"></span><span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workers&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-k" title="Permalink to this definition"></a></dt>
+<dd><p>Number of worker threads to spawn. Negative numbers n correspond to: number_of _cores / <a href="#id3"><span class="problematic" id="id4">|n|</span></a>. Be careful, starting two many workers is know to cause trouble (unfortunately unclear why!).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>-4</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-wkb">
+<span id="cmdoption-stabilize-workersbackend"></span><span class="sig-name descname"><span class="pre">-wkb</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workersbackend</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workersbackend&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-wkb" title="Permalink to this definition"></a></dt>
+<dd><p>What backend to spawn workers with, can be ‘loky’ (multi-process) or ‘threading’ (multi-thread)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>threading</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-d">
+<span id="cmdoption-stabilize-device"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--device</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;device&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-d" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the CUDA devices id, e.g. 0,1,2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-ck">
+<span id="cmdoption-stabilize-check"></span><span class="sig-name descname"><span class="pre">-ck</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--check</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;check&gt;</span></span><a class="headerlink" href="#cmdoption-stabilize-ck" title="Permalink to this definition"></a></dt>
+<dd><p>Checking integrity of written file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-stabilize-arg-INPUT_PATHS">
+<span id="cmdoption-stabilize-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-stabilize-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="tiff">
+<h2>tiff<a class="headerlink" href="#tiff" title="Permalink to this headline"></a></h2>
+<p>Exports dataset as TIFF file(s).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tiff <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tiff-o">
+<span id="cmdoption-tiff-output_path"></span><span id="cmdoption-tiff-output-path"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_path&gt;</span></span><a class="headerlink" href="#cmdoption-tiff-o" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tiff-c">
+<span id="cmdoption-tiff-channels"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channels&gt;</span></span><a class="headerlink" href="#cmdoption-tiff-c" title="Permalink to this definition"></a></dt>
+<dd><p>selected channels.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tiff-s">
+<span id="cmdoption-tiff-slicing"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--slicing</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slicing&gt;</span></span><a class="headerlink" href="#cmdoption-tiff-s" title="Permalink to this definition"></a></dt>
+<dd><p>dataset slice (TZYX), e.g. [0:5] (first five stacks) [:,0:100] (cropping in z)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tiff-w">
+<span id="cmdoption-tiff-overwrite"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tiff-w" title="Permalink to this definition"></a></dt>
+<dd><p>to force overwrite of target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tiff-p">
+<span id="cmdoption-tiff-project"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--project</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;project&gt;</span></span><a class="headerlink" href="#cmdoption-tiff-p" title="Permalink to this definition"></a></dt>
+<dd><p>max projection over given axis (0-&gt;T, 1-&gt;Z, 2-&gt;Y, 3-&gt;X)</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tiff-split">
+<span class="sig-name descname"><span class="pre">--split</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tiff-split" title="Permalink to this definition"></a></dt>
+<dd><p>Splits dataset along first dimension, be carefull, if you slice to a single time point this will split along z!</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tiff-l">
+<span id="cmdoption-tiff-clevel"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--clevel</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;clevel&gt;</span></span><a class="headerlink" href="#cmdoption-tiff-l" title="Permalink to this definition"></a></dt>
+<dd><p>Compression level, 0 means no compression, max is 9</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tiff-k">
+<span id="cmdoption-tiff-workers"></span><span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workers&gt;</span></span><a class="headerlink" href="#cmdoption-tiff-k" title="Permalink to this definition"></a></dt>
+<dd><p>Number of worker threads to spawn. Negative numbers n correspond to: number_of _cores / <a href="#id5"><span class="problematic" id="id6">|n|</span></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>-4</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tiff-wkb">
+<span id="cmdoption-tiff-workersbackend"></span><span class="sig-name descname"><span class="pre">-wkb</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workersbackend</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workersbackend&gt;</span></span><a class="headerlink" href="#cmdoption-tiff-wkb" title="Permalink to this definition"></a></dt>
+<dd><p>What backend to spawn workers with, can be ‘loky’ (multi-process) or ‘threading’ (multi-thread)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>threading</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tiff-arg-INPUT_PATHS">
+<span id="cmdoption-tiff-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tiff-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="view">
+<h2>view<a class="headerlink" href="#view" title="Permalink to this headline"></a></h2>
+<p>Views dataset using napari (napari.org)</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>view <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-view-c">
+<span id="cmdoption-view-channels"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channels&gt;</span></span><a class="headerlink" href="#cmdoption-view-c" title="Permalink to this definition"></a></dt>
+<dd><p>list of channels, all channels when ommited.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-view-s">
+<span id="cmdoption-view-slicing"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--slicing</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slicing&gt;</span></span><a class="headerlink" href="#cmdoption-view-s" title="Permalink to this definition"></a></dt>
+<dd><p>dataset slice (TZYX), e.g. [0:5] (first five stacks) [:,0:100] (cropping in z).</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-view-a">
+<span id="cmdoption-view-aspect"></span><span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--aspect</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;aspect&gt;</span></span><a class="headerlink" href="#cmdoption-view-a" title="Permalink to this definition"></a></dt>
+<dd><p>sets aspect ratio e.g. 4</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>4</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-view-rt">
+<span id="cmdoption-view-rescale-time"></span><span class="sig-name descname"><span class="pre">-rt</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--rescale-time</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-view-rt" title="Permalink to this definition"></a></dt>
+<dd><p>Rescale time axis, useful when channels acquisition rate was not uniform.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-view-cl">
+<span id="cmdoption-view-clim"></span><span class="sig-name descname"><span class="pre">-cl</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--clim</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;clim&gt;</span></span><a class="headerlink" href="#cmdoption-view-cl" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the contrast limits, i.e. -cl 0,1000 sets the contrast limits to [0,1000]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0,512</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-view-cm">
+<span id="cmdoption-view-colormap"></span><span class="sig-name descname"><span class="pre">-cm</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--colormap</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;colormap&gt;</span></span><a class="headerlink" href="#cmdoption-view-cm" title="Permalink to this definition"></a></dt>
+<dd><p>sets colormap, e.g. viridis, gray, magma, plasma, inferno</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>viridis</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-view-ws">
+<span id="cmdoption-view-windowsize"></span><span class="sig-name descname"><span class="pre">-ws</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--windowsize</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;windowsize&gt;</span></span><a class="headerlink" href="#cmdoption-view-ws" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the napari window size. i.e. -ws 400 sets the window to 400x400</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1536</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-view-po">
+<span id="cmdoption-view-projectionsonly"></span><span class="sig-name descname"><span class="pre">-po</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--projectionsonly</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-view-po" title="Permalink to this definition"></a></dt>
+<dd><p>To view only the projections, if present.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-view-vo">
+<span id="cmdoption-view-volumeonly"></span><span class="sig-name descname"><span class="pre">-vo</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--volumeonly</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-view-vo" title="Permalink to this definition"></a></dt>
+<dd><p>To view only the volumetric data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-view-arg-INPUT_PATHS">
+<span id="cmdoption-view-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-view-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+<div class="section" id="volrender">
+<h2>volrender<a class="headerlink" href="#volrender" title="Permalink to this headline"></a></h2>
+<p>Renders 3D volumetric video</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>volrender <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>INPUT_PATHS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-volrender-o">
+<span id="cmdoption-volrender-output_path"></span><span id="cmdoption-volrender-output-path"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_path&gt;</span></span><a class="headerlink" href="#cmdoption-volrender-o" title="Permalink to this definition"></a></dt>
+<dd><p>Output folder to store rendered PNGs. Default is: frames_&lt;channel_name&gt;</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-volrender-c">
+<span id="cmdoption-volrender-channels"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--channels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;channels&gt;</span></span><a class="headerlink" href="#cmdoption-volrender-c" title="Permalink to this definition"></a></dt>
+<dd><p>list of channels to color, all channels when ommited.</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-volrender-s">
+<span id="cmdoption-volrender-slicing"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--slicing</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slicing&gt;</span></span><a class="headerlink" href="#cmdoption-volrender-s" title="Permalink to this definition"></a></dt>
+<dd><p>dataset slice (TZYX), e.g. [0:5] (first five stacks) [:,0:100] (cropping in z).</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-volrender-w">
+<span id="cmdoption-volrender-overwrite"></span><span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-volrender-w" title="Permalink to this definition"></a></dt>
+<dd><p>to force overwrite of target</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-volrender-a">
+<span id="cmdoption-volrender-aspect"></span><span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--aspect</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;aspect&gt;</span></span><a class="headerlink" href="#cmdoption-volrender-a" title="Permalink to this definition"></a></dt>
+<dd><p>sets aspect ratio e.g. 4</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>4</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-volrender-cm">
+<span id="cmdoption-volrender-colormap"></span><span class="sig-name descname"><span class="pre">-cm</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--colormap</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;colormap&gt;</span></span><a class="headerlink" href="#cmdoption-volrender-cm" title="Permalink to this definition"></a></dt>
+<dd><p>sets colormap, e.g. viridis, gray, magma, plasma, inferno</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>magma</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-volrender-rs">
+<span id="cmdoption-volrender-rendersize"></span><span class="sig-name descname"><span class="pre">-rs</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--rendersize</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;rendersize&gt;</span></span><a class="headerlink" href="#cmdoption-volrender-rs" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the frame color size. i.e. -ws 400 sets the window to 400x400</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>2048</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-volrender-cl">
+<span id="cmdoption-volrender-clim"></span><span class="sig-name descname"><span class="pre">-cl</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--clim</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;clim&gt;</span></span><a class="headerlink" href="#cmdoption-volrender-cl" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the contrast limits, i.e. -cl 0,1000 sets the contrast limits to [0,1000]</p>
+</dd></dl>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-volrender-opt">
+<span id="cmdoption-volrender-options"></span><span class="sig-name descname"><span class="pre">-opt</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--options</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;options&gt;</span></span><a class="headerlink" href="#cmdoption-volrender-opt" title="Permalink to this definition"></a></dt>
+<dd><p>Render options, e.g: ‘gamma=1.2,box=True’. Important: no white spaces!!! Complete list with defaults will be displayed on first run</p>
+</dd></dl>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-volrender-arg-INPUT_PATHS">
+<span id="cmdoption-volrender-arg-input-paths"></span><span class="sig-name descname"><span class="pre">INPUT_PATHS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-volrender-arg-INPUT_PATHS" title="Permalink to this definition"></a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+</div>
+</div>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="video_commands.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Video Commands</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../how_to_guides/implementing_processing.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Implementing your own processing pipeline</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021. Chan Zuckerberg Biohub. All rights reserved |
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            | <a class="muted-link" href="../_sources/commands/dexp_commands.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">DEXP Commands</a><ul>
+<li><a class="reference internal" href="#add">add</a></li>
+<li><a class="reference internal" href="#check">check</a></li>
+<li><a class="reference internal" href="#copy">copy</a></li>
+<li><a class="reference internal" href="#deskew">deskew</a></li>
+<li><a class="reference internal" href="#fuse">fuse</a></li>
+<li><a class="reference internal" href="#info">info</a></li>
+<li><a class="reference internal" href="#isonet">isonet</a></li>
+<li><a class="reference internal" href="#projrender">projrender</a></li>
+<li><a class="reference internal" href="#serve">serve</a></li>
+<li><a class="reference internal" href="#speedtest">speedtest</a></li>
+<li><a class="reference internal" href="#stabilize">stabilize</a></li>
+<li><a class="reference internal" href="#tiff">tiff</a></li>
+<li><a class="reference internal" href="#view">view</a></li>
+<li><a class="reference internal" href="#volrender">volrender</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    </body>
+</html>
