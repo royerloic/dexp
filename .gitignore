@@ -105,6 +105,6 @@ venv.bak/
 sandbox
 
 .idea/
-/dexp/sandbox/
-/dexp/processing/color/demo/test.png
+#/dexp/sandbox/
+#/dexp/processing/color/demo/test.png
 
