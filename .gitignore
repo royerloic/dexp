@@ -102,9 +102,10 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-sandbox
+
 
 .idea/
+#sandbox
 #/dexp/sandbox/
 #/dexp/processing/color/demo/test.png
 
