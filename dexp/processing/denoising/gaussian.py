@@ -1,10 +1,9 @@
 from functools import partial
 from typing import Optional
 
-import numpy
-
 from dexp.processing.crop.representative_crop import representative_crop
 from dexp.processing.denoising.j_invariance import calibrate_denoiser
+from dexp.utils import dict_or
 from dexp.utils.backends import Backend
 
 
@@ -14,7 +13,7 @@ def calibrate_denoise_gaussian(
     num_sigma: int = 100,
     max_num_truncate: int = 4,
     crop_size_in_voxels: Optional[int] = 128000,
-    display_images: bool = False,
+    display: bool = False,
     **other_fixed_parameters,
 ):
     """
@@ -65,35 +64,32 @@ def calibrate_denoise_gaussian(
 
     # Size range:
     max_sigma = max(0.0, max_sigma) + 1e-9
-    sigma_range = (0, max_sigma, (max_sigma)/num_sigma)
+    sigma_range = (0, max_sigma, (max_sigma) / num_sigma)
 
     # Truncate range (order matters: we want 4 -- the default -- first):
     truncate_range = [4, 8, 2, 1][: min(max_num_truncate, 4)]
 
     # Parameters to test when calibrating the denoising algorithm
-    parameter_ranges = {'sigma': sigma_range, 'truncate': truncate_range}
+    parameter_ranges = {"sigma": sigma_range, "truncate": truncate_range}
 
     # Partial function:
     _denoise_gaussian = partial(denoise_gaussian, **other_fixed_parameters)
 
     # Calibrate denoiser
-    best_parameters = (
-            calibrate_denoiser(
+    best_parameters = dict_or(
+        calibrate_denoiser(
             crop,
             _denoise_gaussian,
             denoise_parameters=parameter_ranges,
-            display_images=display_images,
-        )
-            | other_fixed_parameters
+            display=display,
+        ),
+        other_fixed_parameters,
     )
 
-    # Memory needed:
-    memory_needed = 2 * image.nbytes
-
-    return denoise_gaussian, best_parameters, memory_needed
+    return denoise_gaussian, best_parameters
 
 
-def denoise_gaussian(image, sigma: float = 1, truncate: float = 4, **kwargs):
+def denoise_gaussian(image, sigma: float = 1, truncate: float = 4):
     """
     Denoises the given image using a simple Gaussian filter.
     Difficult to beat in terms of speed and often provides
